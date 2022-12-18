@@ -49,6 +49,48 @@ const techStacks = [
   { name: "Git", href: "/skills/git.svg" },
 ];
 
+const projects = [
+  {
+    name: "Omnifood",
+    screenshot: "/screenshot/omnifood.png",
+    description: [
+      "state management using Context API",
+      "styling using CSS Modules",
+    ],
+    techStacks: ["React.js", "CSS Modules"],
+    sourceCodeLink: "https://github.com/krishna-saini/OmniFood",
+    liveLink: "https://omnifood-food-order-app.netlify.app/",
+  },
+  {
+    name: "Forkify",
+    screenshot: "/screenshot/forkify.png",
+    description: [],
+    techStacks: ["JavaScript", "SCSS"],
+    sourceCodeLink: "https://github.com/krishna-saini/forkify",
+    liveLink: "https://forkify-krishna-saini.netlify.app/",
+  },
+  {
+    name: "Rode.com Clone",
+    screenshot: "/screenshot/rode-main.png",
+    description: [],
+    techStacks: ["Tailwind", "HTML5"],
+    sourceCodeLink: "https://github.com/krishna-saini/rode.com-clone-tailwind",
+    liveLink: "https://rode-clone-tailwind-by-krishna-saini.netlify.app/",
+  },
+  {
+    name: "Portfolio website",
+    screenshot: "/screenshot/portfolio-main.png",
+    description: [
+      "A portfolio website to showcase my projects, skills, and research works.",
+      "Lazy image loading for better user experience.",
+      "Implemented page loading transitions",
+    ],
+    techStacks: ["Next.js", "Tailwind CSS"],
+    sourceCodeLink: "",
+    liveLink: "",
+  },
+];
+
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -126,33 +168,76 @@ export default function Home() {
 
         {/* skills */}
         <section className="">
-          <div>
-            <h3 className="text-5xl text-center  text-teal-600 font-medium dark:text-teal-400 md:text-6xl ">Tech Stacks</h3>
-            <div className="my-16 grid  gap-16 items-center grid-cols-3 sm:grid-cols-5">
-              {/* skill 1  */}
-              {techStacks.map((stack, index) => {
-                return (
-                  <div key={index} className="flex flex-col items-center gap-2">
-                    <Image
-                      src={stack.href}
-                      alt={stack.name}
-                      width={80}
-                      height={80}
-                    />
-                    <p className="font-semibold ">{stack.name}</p>
-                  </div>
-                );
-              })}
-            </div>
+          <h3 className="text-5xl text-center  text-teal-600 font-medium dark:text-teal-400 md:text-6xl ">
+            Tech Stacks
+          </h3>
+          <div className="my-16 grid  gap-16 items-center grid-cols-3 sm:grid-cols-5">
+            {/* skill 1  */}
+            {techStacks.map((stack, index) => {
+              return (
+                <div key={index} className="flex flex-col items-center gap-2">
+                  <Image
+                    src={stack.href}
+                    alt={stack.name}
+                    width={80}
+                    height={80}
+                  />
+                  <p className="font-semibold ">{stack.name}</p>
+                </div>
+              );
+            })}
           </div>
         </section>
 
         {/* top project   */}
-        <section>
-          <div>
-            <h3 className="text-3xl py-1 dark:text-white ">
-              featured projects
+        <section className="my-20">
+          <div >
+            <h3 className="text-5xl text-center  text-teal-600 font-medium dark:text-teal-400 md:text-6xl">
+              Featured Projects
             </h3>
+            {/* projects section  */}
+            <div className="w-4/5 my-20 mx-auto grid md:grid-cols-2 gap-10 justify-center">
+              {projects.map((project, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="border  p-5  shadow-md flex flex-col gap-6 "
+                  >
+                    <h2 className="text-center font-bold text-gray-600">
+                      {project.name}
+                    </h2>
+                    <div className="flex gap-5">
+                      {project.techStacks.map((tech, i) => {
+                        return (
+                          <span key={i} className="border px-2 py-1 text-black">
+                            {tech}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <div className=" h-96  relative overflow-hidden  ">
+                      <Image
+                        src={project.screenshot}
+                        alt={project.name}
+                        fill
+                        style={{ objectFit: "contain", objectPosition:"top", }}
+                      />
+                    </div>
+                    {/* <p>{project.description}</p> */}
+                    <div className="flex justify-between md:justify-start gap-8 items-center  ">
+                      <button className="bg-gradient-to-r from-cyan-500 text- to-teal-500 text-white px-4 py-2 border-none rounded-md ">
+                        <a href={project.sourceCodeLink} />
+                        Source Code
+                      </button>
+                      <button className="bg-gradient-to-r from-cyan-500 text- to-teal-500 text-white px-4 py-2 border-none rounded-md ">
+                        <a href={project.liveLink} />
+                        Live Link
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </section>
       </main>
